@@ -1,0 +1,21 @@
+{
+  "class": {
+    "prefix": "class",
+    "body": [
+      "local ${2:ParentClass} = require(\"${3:path.to.ParentClass}\")",
+      "",
+      "--- @class ${1:ClassName} : ${2:ParentClass}",
+      "--- @field new fun(self: ${1:ClassName}): ${1:ClassName}",
+      "local ${1:ClassName} = ${2:ParentClass}:extend()",
+      "",
+      "function ${1:ClassName}:new()",
+      "\t${2:ParentClass}.new(self)",
+      "",
+      "\treturn self",
+      "end",
+      "",
+      "return ${1:ClassName}"
+    ],
+    "description": "Extends a class"
+  }
+}
