@@ -1,24 +1,29 @@
 --- @class Object
 --- @field extend fun(self: Object): Object
+--- @field _init fun(self: Object, ...): nil
 local Object = {}
 Object.__index = Object
 
---- Creates a new subclass, inheriting methods and fields from the parent
---- @param self Object The parent class
---- @return Object The new subclass
+--- @param self Object
+--- @return Object The
 function Object:extend()
 	local subtype = {}
 	subtype.__index = subtype
 	return setmetatable(subtype, { __index = self })
 end
 
---- Constructor with initialization logic
+--- @param self Object
+--- @param ... any
+function Object:_init(...) end
+
 --- @generic T
 --- @param self T
 --- @param ... any
 --- @return T
 function Object:new(...)
-	return setmetatable({}, self)
+	local instance = setmetatable({}, self)
+	instance:_init(...)
+	return instance
 end
 
 return Object

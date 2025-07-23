@@ -13,9 +13,9 @@ local MyClass = Class:extend()
 2. Create a constructor:
 
 ```lua
-function MyClass:new(name)
-    Class.new(self)
-    self.name = name
+function MyClass:_init(params)
+    Class._init(self, params)
+    self.name = params.name
     return self
 end
 ```
@@ -33,9 +33,9 @@ end
 ```lua
 local MySubClass = MyClass:extend()
 -- Reuse the constructor from the parent class
-function MySubClass:new(name, age)
-    MyClass.new(self, name)
-    self.age = age
+function MySubClass:_init(params)
+    MyClass._init(self, params)
+    self.age = params.age
     return self
 end
 ```
